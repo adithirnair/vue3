@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 Concepts Exploration</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.0.0/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue 3 Concepts Exploration</h1>
+    
+    <!-- Computed Properties -->
+    <div>
+      <h2>Computed Properties</h2>
+      <label for="radius">Enter the radius:</label>
+      <input v-model="radius" id="radius" type="number">
+      <p>Area of the circle: {{ circleArea }}</p>
+    </div>
+    
+    <!-- Dynamic Classes -->
+    <div>
+      <h2>choose an option</h2>
+      <p :class="{ 'highlight': isHighlighted, 'warning': isError }">WELCOME TO MY SITE</p>
+      
+      <button @click="toggleHighlight">yellow Highlight</button>
+      <button @click="toggleError">red text</button>
+    </div>
+  </div>
+
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+    .warning {
+      color: red;
+    }
+  </style>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          radius: 0,
+          isHighlighted: false,
+          isError: false,
+        };
+      },
+      computed: {
+        circleArea() {
+          const r = parseFloat(this.radius);
+          return Math.PI * r * r;
+        },
+      },
+      methods: {
+        toggleHighlight() {
+          this.isHighlighted = !this.isHighlighted;
+        },
+        toggleError() {
+          this.isError = !this.isError;
+        },
+      },
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
+
