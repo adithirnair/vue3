@@ -15,16 +15,30 @@
       <h2>Computed Properties</h2>
       <label for="radius">Enter the radius:</label>
       <input v-model="radius" id="radius" type="number">
-      <p>Area of the circle: {{ circleArea }}</p>
+      <p v-if="radius > 0">Area of the circle: {{ circleArea }}</p>
+      <p v-else>Please enter a valid radius.</p>
     </div>
     
     <!-- Dynamic Classes -->
     <div>
-      <h2>choose an option</h2>
+      <h2>Choose an option</h2>
       <p :class="{ 'highlight': isHighlighted, 'warning': isError }">WELCOME TO MY SITE</p>
       
-      <button @click="toggleHighlight">yellow Highlight</button>
-      <button @click="toggleError">red text</button>
+      <button @click="toggleHighlight">Toggle yellow Highlight</button>
+      <button @click="toggleError">Toggle red text</button>
+    </div>
+    
+    <!-- Conditional Rendering with v-show -->
+    <div>
+      <h2 v-show="isHighlighted">Content shown using v-show</h2>
+    </div>
+    
+    <!-- Looping with v-for -->
+    <div>
+      <h2>Looping with v-for</h2>
+      <ul>
+        <li v-for="(item, index) in itemList" :key="index">{{ item }}</li>
+      </ul>
     </div>
   </div>
 
@@ -44,6 +58,7 @@
           radius: 0,
           isHighlighted: false,
           isError: false,
+          itemList: ["Item 1", "Item 2", "Item 3"],
         };
       },
       computed: {
@@ -66,4 +81,5 @@
   </script>
 </body>
 </html>
+
 
